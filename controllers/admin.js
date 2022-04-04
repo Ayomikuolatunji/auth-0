@@ -13,6 +13,9 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postAddProduct = (req, res, next) => {
+  if(!req.session.isLoggedIn){
+    return res.redirect("/login")
+}
   const title = req.body.title;
   const imageUrl = req.body.imageUrl;
   const price = req.body.price;
