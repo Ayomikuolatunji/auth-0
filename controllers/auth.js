@@ -46,7 +46,7 @@ exports.postSignup = (req, res, next) => {
       return  newUser.save()
     })
     .then(user=>{
-      res.redirect("/login")
+        return  res.redirect("/login")
     })
     .catch(err=>{
        console.log(err)
