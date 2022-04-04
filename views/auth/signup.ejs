@@ -18,9 +18,10 @@
             </div>
             <div class="form-control">
                 <label for="confirmPassword">Confirm Password</label>
-                <input type="password" name="confirmPassword" id="confirmPassword" value="<% csrfToken %">
+                <input type="password" name="confirmPassword" id="confirmPassword">
             </div>
-            <button class="btn" type="submit">sign up</button>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn" type="submit">Signup</button>
         </form>
     </main>
 <%- include('../includes/end.ejs') %>
