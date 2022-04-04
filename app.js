@@ -30,9 +30,9 @@ app.use((req, res, next) => {
   if (!req.session.user) {
     return next();
   }
-  User.findById('5bab316ce0a7c75f783cb8a8')
+  User.findById(req.session.user._id)
     .then(user => {
-      req.user= user;
+      req.user = user;
       next();
     })
     .catch(err => console.log(err));
@@ -56,18 +56,6 @@ mongoose
     console.log("connected to the database")
   })
   .then(result => {
-    User.findOne().then(user => {
-      if (!user) {
-        const user = new User({
-          name: 'Max',
-          email: 'max@test.com',
-          cart: {
-            items: []
-          }
-        });
-        user.save();
-      }
-    });
     app.listen(5000,()=>{
       console.log("port running on localhost 3000")
     });

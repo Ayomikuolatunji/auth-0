@@ -35,16 +35,21 @@ exports.postSignup = (req, res, next) => {
     const comfirmPassword=req.body.password;
     User.find({email:email})
     .then(user=>{
-         if(user){
-           res.redirect("/")
-         }
-       const newUser=new User({
+      if(user){
+         res.redirect("/")
+      }
+      const newUser=new User({
           email:email,
-          password:password
-       })
+          password:password,
+          cart:{items:[]}
+      })
+      return  newUser.save()
+    })
+    .then(user=>{
+      res.redirect("/login")
     })
     .catch(err=>{
-
+       console.log(err)
     })
 };
 
