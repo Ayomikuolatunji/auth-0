@@ -41,14 +41,14 @@ exports.postSignup = (req, res, next) => {
          res.redirect("/")
       }
       return  bcrypt.hash(password,12)
-    })
-    .then(passwordHashed=>{
-      const newUser=new User({
-        email:email,
-        password:passwordHashed,
-        cart:{items:[]}
-    })
-      return  newUser.save()
+      .then(passwordHashed=>{
+        const newUser=new User({
+          email:email,
+          password:passwordHashed,
+          cart:{items:[]}
+      })
+        return  newUser.save()
+      })
     })
     .then(user=>{
         return  res.redirect("/login")
